@@ -1,0 +1,53 @@
+import random
+
+# Define the questions and answers
+questions = {
+    "General Knowledge": {
+        "What is the capital of France?": ["A. Paris", "B. Rome", "C. London", "D. Madrid"],
+        "Who wrote 'Romeo and Juliet'?": ["A. William Shakespeare", "B. Charles Dickens", "C. Jane Austen", "D. Mark Twain"],
+        "What is the chemical symbol for water?": ["A. Wo", "B. Hy", "C. Wa", "D. H2O"],
+    },
+    "Science": {
+        "What is the powerhouse of the cell?": ["A. Nucleus", "B. Mitochondria", "C. Ribosome", "D. Chloroplast"],
+        "What is the closest planet to the Sun?": ["A. Earth", "B. Venus", "C. Mars", "D. Mercury"],
+        "What is the chemical symbol for gold?": ["A. Go", "B. Ag", "C. Au", "D. Pt"],
+    }
+}
+
+# Function to present a question and check the answer
+def ask_question(category, question, options, correct_answer, scores):
+    print(f"\nCategory: {category}")
+    print(question)
+    for option in options:
+        print(option)
+    user_answer = input("Your answer: ").strip().upper()
+    if user_answer == correct_answer:
+        print("Correct!")
+        scores[0] += 1
+    else:
+        print("Incorrect. The correct answer is", correct_answer)
+    print("")
+
+# Function to run the quiz
+def run_quiz(questions):
+    total_questions = 0
+    correct_answers = 0
+    scores = [correct_answers, total_questions]
+
+    for category, q_dict in questions.items():
+        print("\n-----", category, "-----")
+        for question, options in q_dict.items():
+            total_questions += 1
+            correct_answer = options[0].split(".")[0]
+            ask_question(category, question, options, correct_answer, scores)
+    
+    print("----- Quiz Complete! -----")
+    print(f"You scored {scores[0]} out of {total_questions}.")
+
+# Main function to start the quiz
+def main():
+    print("Welcome to the Quiz Game!\n")
+    run_quiz(questions)
+
+if __name__ == "__main__":
+    main()
